@@ -1,0 +1,17 @@
+---
+
+- name: Restart the Acl agent
+  connection: httpapi
+  hosts: lab
+  gather_facts: false
+
+  vars:
+    ansible_python_interpreter: /usr/bin/python3
+
+  tasks:
+
+    - name: "Restart the Acl agent..."
+      eos_command:
+        commands:
+          - agent Acl terminate
+          - agent Ira terminate

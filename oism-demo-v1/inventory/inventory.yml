@@ -1,0 +1,60 @@
+---
+all:
+  children:
+    eos:
+      children:
+        lab:
+          hosts:
+            SPINE1:
+              ansible_host: 127.0.0.1
+              ansible_port: 22001
+              ansible_httpapi_port: 44301
+            LEAF1:
+              ansible_host: 127.0.0.1
+              ansible_port: 22005
+              ansible_httpapi_port: 44305
+            LEAF2:
+              ansible_host: 127.0.0.1
+              ansible_port: 22006
+              ansible_httpapi_port: 44306
+            LEAF3:
+              ansible_host: 127.0.0.1
+              ansible_port: 22007
+              ansible_httpapi_port: 44307
+            LEAF4:
+              ansible_host: 127.0.0.1
+              ansible_port: 22008
+              ansible_httpapi_port: 44308
+            PEG:
+              ansible_host: 127.0.0.1
+              ansible_port: 22009
+              ansible_httpapi_port: 44309
+            SW1:
+              ansible_host: 127.0.0.1
+              ansible_port: 22010
+              ansible_httpapi_port: 44310
+            RP:
+              ansible_host: 127.0.0.1
+              ansible_port: 22011
+              ansible_httpapi_port: 44311
+    receivers:
+      hosts:
+        HostA: { ansible_host: 127.0.0.1, ansible_port: 22201 }
+        HostB: { ansible_host: 127.0.0.1, ansible_port: 22202 }
+        HostC: { ansible_host: 127.0.0.1, ansible_port: 22203 }
+        HostD: { ansible_host: 127.0.0.1, ansible_port: 22204 }
+        HostE: { ansible_host: 127.0.0.1, ansible_port: 22205 }
+        HostF: { ansible_host: 127.0.0.1, ansible_port: 22206 }
+        HostG: { ansible_host: 127.0.0.1, ansible_port: 22207 }
+        HostH: { ansible_host: 127.0.0.1, ansible_port: 22208 }
+        HostI: { ansible_host: 127.0.0.1, ansible_port: 22209 }
+        HostJ: { ansible_host: 127.0.0.1, ansible_port: 22210 }
+      vars:
+        ansible_connection: ssh
+        ansible_user: admin
+        ansible_password: admin
+        ansible_become: true
+        ansible_become_method: sudo
+        ansible_become_password: admin
+        ansible_ssh_common_args: '-o StrictHostKeyChecking=no'
+

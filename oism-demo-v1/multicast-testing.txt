@@ -1,0 +1,23 @@
+Flow 1: Sender - HostA
+    Source:
+        iperf -c 239.0.10.101 -u -b 250K -T 100 -t 3600 -i 1
+    Receiver:
+        iperf -s -u -B 239.0.10.101 -i 1
+
+Flow 2: Sender - HostF
+    Source:
+        iperf -c 239.0.30.102 -u -b 250K -T 100 -t 3600 -i 1
+    Receiver:
+        iperf -s -u -B 239.0.30.102 -i 1
+
+Flow 3: Sender HostH
+    Source:
+        iperf -c 239.0.20.103 -u -b 250K -T 100 -t 3600 -i 1
+    Receiver:
+        iperf -s -u -B 239.0.20.103 -i 1
+
+Flow 4: Sender HostI
+    Source:
+        iperf -c 239.0.201.101 -u -b 250K -T 100 -t 3600 -i 1
+    Receiver:
+        iperf -s -u -B 239.0.201.101 -i 1

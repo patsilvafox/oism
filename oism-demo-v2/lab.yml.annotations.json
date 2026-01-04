@@ -1,0 +1,552 @@
+{
+  "freeTextAnnotations": [],
+  "groupStyleAnnotations": [
+    {
+      "id": "EVPN Domain A:1",
+      "backgroundColor": "#526eff",
+      "backgroundOpacity": 20,
+      "borderColor": "#dddddd",
+      "borderWidth": 0.5,
+      "borderStyle": "solid",
+      "borderRadius": 0,
+      "color": "#ebecf0",
+      "labelPosition": "top-left"
+    },
+    {
+      "id": "EVPN Domain B:1",
+      "backgroundColor": "#0d9bbf",
+      "backgroundOpacity": 20,
+      "borderColor": "#dddddd",
+      "borderWidth": 0.5,
+      "borderStyle": "solid",
+      "borderRadius": 0,
+      "color": "#ebecf0",
+      "labelPosition": "top-right"
+    },
+    {
+      "id": "PIM Domain:1",
+      "backgroundColor": "#8018e7",
+      "backgroundOpacity": 20,
+      "borderColor": "#dddddd",
+      "borderWidth": 0.5,
+      "borderStyle": "solid",
+      "borderRadius": 0,
+      "color": "#ebecf0",
+      "labelPosition": "top-center"
+    },
+    {
+      "id": "PIM Domain:2",
+      "backgroundColor": "#8018e7",
+      "backgroundOpacity": 20,
+      "borderColor": "#dddddd",
+      "borderWidth": 0.5,
+      "borderStyle": "solid",
+      "borderRadius": 0,
+      "color": "#ebecf0",
+      "labelPosition": "bottom-center"
+    }
+  ],
+  "cloudNodeAnnotations": [],
+  "nodeAnnotations": [
+    {
+      "id": "A-SPINE",
+      "icon": "router",
+      "position": {
+        "x": -21,
+        "y": 161
+      },
+      "geoCoordinates": {
+        "lat": 48.684826888402256,
+        "lng": 9.007895390625677
+      },
+      "group": "EVPN Domain A",
+      "level": "1"
+    },
+    {
+      "id": "A-LEAF-1",
+      "icon": "router",
+      "position": {
+        "x": -133,
+        "y": 231
+      },
+      "geoCoordinates": {
+        "lat": 48.684826888402256,
+        "lng": 9.107895390625677
+      },
+      "group": "EVPN Domain A",
+      "level": "1"
+    },
+    {
+      "id": "A-LEAF-2",
+      "icon": "router",
+      "position": {
+        "x": -77,
+        "y": 231
+      },
+      "geoCoordinates": {
+        "lat": 48.88482688840226,
+        "lng": 9.307895390625678
+      },
+      "group": "EVPN Domain A",
+      "level": "1"
+    },
+    {
+      "id": "A-LEAF-3",
+      "icon": "router",
+      "position": {
+        "x": -21,
+        "y": 231
+      },
+      "geoCoordinates": {
+        "lat": 49.084826888402254,
+        "lng": 9.507895390625677
+      },
+      "group": "EVPN Domain A",
+      "level": "1"
+    },
+    {
+      "id": "A-LEAF-4",
+      "icon": "router",
+      "position": {
+        "x": 35,
+        "y": 231
+      },
+      "geoCoordinates": {
+        "lat": 49.28482688840226,
+        "lng": 9.707895390625676
+      },
+      "group": "EVPN Domain A",
+      "level": "1"
+    },
+    {
+      "id": "A-LEAF-5",
+      "icon": "router",
+      "position": {
+        "x": 91,
+        "y": 231
+      },
+      "geoCoordinates": {
+        "lat": 49.48482688840225,
+        "lng": 9.007895390625677
+      },
+      "group": "EVPN Domain A",
+      "level": "1"
+    },
+    {
+      "id": "A-LEAF-7",
+      "icon": "router",
+      "position": {
+        "x": -63,
+        "y": 91
+      },
+      "geoCoordinates": {
+        "lat": 48.78482688840226,
+        "lng": 9.207895390625676
+      },
+      "group": "EVPN Domain A",
+      "level": "1"
+    },
+    {
+      "id": "A-LEAF-8",
+      "icon": "router",
+      "position": {
+        "x": 21,
+        "y": 91
+      },
+      "geoCoordinates": {
+        "lat": 48.98482688840225,
+        "lng": 9.407895390625677
+      },
+      "group": "EVPN Domain A",
+      "level": "1"
+    },
+    {
+      "id": "A-SW-1",
+      "icon": "router",
+      "position": {
+        "x": -105,
+        "y": 273
+      },
+      "geoCoordinates": {
+        "lat": 49.184826888402256,
+        "lng": 9.607895390625677
+      }
+    },
+    {
+      "id": "HostA1",
+      "icon": "router",
+      "position": {
+        "x": -133,
+        "y": 315
+      },
+      "geoCoordinates": {
+        "lat": 48.684826888402256,
+        "lng": 9.007895390625677
+      }
+    },
+    {
+      "id": "HostA2",
+      "icon": "router",
+      "position": {
+        "x": -105,
+        "y": 315
+      },
+      "geoCoordinates": {
+        "lat": 48.684826888402256,
+        "lng": 9.007895390625677
+      }
+    },
+    {
+      "id": "HostA3",
+      "icon": "router",
+      "position": {
+        "x": -77,
+        "y": 315
+      },
+      "geoCoordinates": {
+        "lat": 49.38482688840226,
+        "lng": 9.807895390625678
+      }
+    },
+    {
+      "id": "HostA4",
+      "icon": "router",
+      "position": {
+        "x": 35,
+        "y": 287
+      },
+      "geoCoordinates": {
+        "lat": 48.684826888402256,
+        "lng": 9.107895390625677
+      }
+    },
+    {
+      "id": "HostA5",
+      "icon": "router",
+      "position": {
+        "x": 91,
+        "y": 287
+      },
+      "geoCoordinates": {
+        "lat": 48.88482688840226,
+        "lng": 9.307895390625678
+      }
+    },
+    {
+      "id": "B-SPINE",
+      "icon": "router",
+      "position": {
+        "x": 287,
+        "y": 161
+      },
+      "geoCoordinates": {
+        "lat": 48.684826888402256,
+        "lng": 9.007895390625677
+      },
+      "group": "EVPN Domain B",
+      "level": "1"
+    },
+    {
+      "id": "B-LEAF-1",
+      "icon": "router",
+      "position": {
+        "x": 203,
+        "y": 231
+      },
+      "geoCoordinates": {
+        "lat": 49.084826888402254,
+        "lng": 9.507895390625677
+      },
+      "group": "EVPN Domain B",
+      "level": "1"
+    },
+    {
+      "id": "B-LEAF-2",
+      "icon": "router",
+      "position": {
+        "x": 259,
+        "y": 231
+      },
+      "geoCoordinates": {
+        "lat": 49.28482688840226,
+        "lng": 9.707895390625676
+      },
+      "group": "EVPN Domain B",
+      "level": "1"
+    },
+    {
+      "id": "B-LEAF-3",
+      "icon": "router",
+      "position": {
+        "x": 315,
+        "y": 231
+      },
+      "geoCoordinates": {
+        "lat": 49.48482688840225,
+        "lng": 9.007895390625677
+      },
+      "group": "EVPN Domain B",
+      "level": "1"
+    },
+    {
+      "id": "B-LEAF-4",
+      "icon": "router",
+      "position": {
+        "x": 371,
+        "y": 231
+      },
+      "geoCoordinates": {
+        "lat": 48.78482688840226,
+        "lng": 9.207895390625676
+      },
+      "group": "EVPN Domain B",
+      "level": "1"
+    },
+    {
+      "id": "B-LEAF-7",
+      "icon": "router",
+      "position": {
+        "x": 245,
+        "y": 91
+      },
+      "geoCoordinates": {
+        "lat": 48.98482688840225,
+        "lng": 9.407895390625677
+      },
+      "group": "EVPN Domain B",
+      "level": "1"
+    },
+    {
+      "id": "B-LEAF-8",
+      "icon": "router",
+      "position": {
+        "x": 329,
+        "y": 91
+      },
+      "geoCoordinates": {
+        "lat": 49.184826888402256,
+        "lng": 9.607895390625677
+      },
+      "group": "EVPN Domain B",
+      "level": "1"
+    },
+    {
+      "id": "B-SW-1",
+      "icon": "router",
+      "position": {
+        "x": 287,
+        "y": 35
+      },
+      "geoCoordinates": {
+        "lat": 49.38482688840226,
+        "lng": 9.807895390625678
+      }
+    },
+    {
+      "id": "HostB1",
+      "icon": "router",
+      "position": {
+        "x": 203,
+        "y": 273
+      },
+      "geoCoordinates": {
+        "lat": 48.684826888402256,
+        "lng": 9.007895390625677
+      }
+    },
+    {
+      "id": "HostB2",
+      "icon": "router",
+      "position": {
+        "x": 259,
+        "y": 273
+      },
+      "geoCoordinates": {
+        "lat": 48.684826888402256,
+        "lng": 9.007895390625677
+      }
+    },
+    {
+      "id": "HostB3",
+      "icon": "router",
+      "position": {
+        "x": 315,
+        "y": 273
+      },
+      "geoCoordinates": {
+        "lat": 48.684826888402256,
+        "lng": 9.107895390625677
+      }
+    },
+    {
+      "id": "HostB4",
+      "icon": "router",
+      "position": {
+        "x": 357,
+        "y": 315
+      },
+      "geoCoordinates": {
+        "lat": 48.88482688840226,
+        "lng": 9.307895390625678
+      }
+    },
+    {
+      "id": "HostB5",
+      "icon": "router",
+      "position": {
+        "x": 385,
+        "y": 315
+      },
+      "geoCoordinates": {
+        "lat": 49.084826888402254,
+        "lng": 9.507895390625677
+      }
+    },
+    {
+      "id": "HostB6",
+      "icon": "router",
+      "position": {
+        "x": 315,
+        "y": 7
+      },
+      "geoCoordinates": {
+        "lat": 49.28482688840226,
+        "lng": 9.707895390625676
+      }
+    },
+    {
+      "id": "HostB7",
+      "icon": "router",
+      "position": {
+        "x": 259,
+        "y": 7
+      },
+      "geoCoordinates": {
+        "lat": 49.48482688840225,
+        "lng": 9.007895390625677
+      }
+    },
+    {
+      "id": "PD1-R1",
+      "icon": "router",
+      "position": {
+        "x": -63,
+        "y": 35
+      },
+      "geoCoordinates": {
+        "lat": 48.78482688840226,
+        "lng": 9.207895390625676
+      },
+      "group": "PIM Domain",
+      "level": "1"
+    },
+    {
+      "id": "PD1-R2",
+      "icon": "router",
+      "position": {
+        "x": 21,
+        "y": 35
+      },
+      "geoCoordinates": {
+        "lat": 48.98482688840225,
+        "lng": 9.407895390625677
+      },
+      "group": "PIM Domain",
+      "level": "1"
+    },
+    {
+      "id": "PD1-R3",
+      "icon": "router",
+      "position": {
+        "x": -21,
+        "y": -7
+      },
+      "geoCoordinates": {
+        "lat": 49.184826888402256,
+        "lng": 9.607895390625677
+      },
+      "group": "PIM Domain",
+      "level": "1"
+    },
+    {
+      "id": "PD1-R4",
+      "icon": "router",
+      "position": {
+        "x": -21,
+        "y": 287
+      },
+      "geoCoordinates": {
+        "lat": 49.38482688840226,
+        "lng": 9.807895390625678
+      },
+      "group": "PIM Domain",
+      "level": "2"
+    },
+    {
+      "id": "PD1-H1",
+      "icon": "router",
+      "position": {
+        "x": -63,
+        "y": -7
+      },
+      "geoCoordinates": {
+        "lat": 48.684826888402256,
+        "lng": 9.107895390625677
+      },
+      "group": "PIM Domain",
+      "level": "1"
+    },
+    {
+      "id": "PD1-H2",
+      "icon": "router",
+      "position": {
+        "x": 21,
+        "y": -7
+      },
+      "geoCoordinates": {
+        "lat": 48.88482688840226,
+        "lng": 9.307895390625678
+      },
+      "group": "PIM Domain",
+      "level": "1"
+    },
+    {
+      "id": "PD1-H3",
+      "icon": "router",
+      "position": {
+        "x": -21,
+        "y": 315
+      },
+      "geoCoordinates": {
+        "lat": 49.084826888402254,
+        "lng": 9.507895390625677
+      },
+      "group": "PIM Domain",
+      "level": "2"
+    },
+    {
+      "id": "EXT-SW-1",
+      "icon": "router",
+      "position": {
+        "x": 371,
+        "y": 273
+      },
+      "geoCoordinates": {
+        "lat": 49.28482688840226,
+        "lng": 9.707895390625676
+      }
+    },
+    {
+      "id": "CORE",
+      "icon": "router",
+      "position": {
+        "x": 133,
+        "y": 35
+      },
+      "geoCoordinates": {
+        "lat": 49.48482688840225,
+        "lng": 9.007895390625677
+      }
+    }
+  ]
+}

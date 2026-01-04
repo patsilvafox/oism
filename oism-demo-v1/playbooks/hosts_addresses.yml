@@ -1,0 +1,39 @@
+---
+- name: Deploy hostnetconfig script and configure receiver hosts
+  hosts: receivers
+  gather_facts: false
+  become: true
+
+  vars:
+    src_path: "{{ playbook_dir }}/../configs/hostnetconfig_pat.sh"
+    dst_path: /usr/local/bin/hostnetconfig_pat.sh
+
+    receiver_net:
+      HostA: { ip4: "10.10.10.101/24",  gw: "10.10.10.1" }
+      HostB: { ip4: "10.20.20.101/24",  gw: "10.20.20.1" }
+      HostC: { ip4: "10.30.30.101/24",  gw: "10.30.30.1" }
+      HostD: { ip4: "10.10.10.102/24",  gw: "10.10.10.1" }
+      HostE: { ip4: "10.20.20.102/24",  gw: "10.20.20.1" }
+      HostF: { ip4: "10.30.30.102/24",  gw: "10.30.30.1" }
+      HostG: { ip4: "10.10.10.103/24",  gw: "10.10.10.1" }
+      HostH: { ip4: "10.20.20.103/24",  gw: "10.20.20.1" }
+      HostI: { ip4: "10.201.201.101/24", gw: "10.201.201.1" }
+      HostJ: { ip4: "10.202.202.101/24", gw: "10.202.202.1" }
+
+  tasks:
+    - name: Read local script content
+      ansible.builtin.set_fact:
+        script_content: "{{ lookup('ansible.builtin.file', src_path) }}"
+
+    - name: Deploy script to /usr/local/bin (no SFTP/SCP)
+      ansible.builtin.raw: |
+        sudo tee {{ dst_path }} >/dev/null <<'EOF'
+        {{ script_content }}
+        EOF
+        sudo chmod 0755 {{ dst_path }}
+        sudo chown root:root {{ dst_path }}
+
+    - name: Run hostnetconfig with per-host IP/gateway
+      ansible.builtin.raw: |
+        sudo bash {{ dst_path }} -i4 {{ receiver_net[inventory_hostname].ip4 }} -g {{ receiver_net[inventory_hostname].gw }}
+      when: receiver_net[inventory_hostname] is defined

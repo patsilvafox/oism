@@ -1,0 +1,229 @@
+---
+# --------------------------------------------------------------
+# Arista EVPN Deployment Guide Topology
+# --------------------------------------------------------------
+
+name: oism-demo
+
+prefix: ""
+
+mgmt:
+  network: oism-mgmt
+  ipv4-subnet: 172.100.100.0/24
+
+topology:
+
+  defaults:
+    env:
+      INTFTYPE: et
+
+  kinds:
+    ceos:
+      image: ceos:4.30.2F
+      memory: 4g
+    linux:
+      image: mitchv85/devhost
+
+  nodes:
+
+#########################
+# SPINE                 #
+#########################
+
+    SPINE1:
+      kind: ceos
+      mgmt-ipv4: 172.100.100.101
+      startup-config: ./configs/SPINE1.cfg
+      ports:
+        - '22001:22'
+        - '8001:80'
+        - '44301:443'
+
+#########################
+# LEAF                  #
+#########################
+
+    LEAF1:
+      kind: ceos
+      mgmt-ipv4: 172.100.100.105
+      startup-config: ./configs/LEAF1.cfg
+      ports:
+        - '22005:22'
+        - '8005:80'
+        - '44305:443'
+
+    LEAF2:
+      kind: ceos
+      mgmt-ipv4: 172.100.100.106
+      startup-config: ./configs/LEAF2.cfg
+      ports:
+        - '22006:22'
+        - '8006:80'
+        - '44306:443'
+
+    LEAF3:
+      kind: ceos
+      mgmt-ipv4: 172.100.100.107
+      startup-config: ./configs/LEAF3.cfg
+      ports:
+        - '22007:22'
+        - '8007:80'
+        - '44307:443'
+
+    LEAF4:
+      kind: ceos
+      mgmt-ipv4: 172.100.100.108
+      startup-config: ./configs/LEAF4.cfg
+      ports:
+        - '22008:22'
+        - '8008:80'
+        - '44308:443'
+
+    PEG:
+      kind: ceos
+      mgmt-ipv4: 172.100.100.109
+      startup-config: ./configs/PEG.cfg
+      ports:
+        - '22009:22'
+        - '8009:80'
+        - '44309:443'
+
+    SW1:
+      kind: ceos
+      mgmt-ipv4: 172.100.100.110
+      startup-config: ./configs/SW1.cfg
+      ports:
+        - '22010:22'
+        - '8010:80'
+        - '44310:443'
+
+    RP:
+      kind: ceos
+      mgmt-ipv4: 172.100.100.111
+      startup-config: ./configs/RP.cfg
+      ports:
+        - '22011:22'
+        - '8011:80'
+        - '44311:443'
+
+#########################
+# HOSTS                 #
+#########################
+
+    HostA:
+      kind: linux
+      image: mitchv85/devhost
+      mgmt-ipv4: 172.100.100.201
+      ports:
+        - '22201:22'
+      exec:
+        - bash /usr/local/bin/hostnetconfig.sh -i 10.10.10.101/24 -g 10.10.10.1
+
+    HostB:
+      kind: linux
+      image: mitchv85/devhost
+      mgmt-ipv4: 172.100.100.202
+      ports:
+        - '22202:22'
+      exec:
+        - bash /usr/local/bin/hostnetconfig.sh -i 10.20.20.101/24 -g 10.20.20.1
+
+    HostC:
+      kind: linux
+      image: mitchv85/devhost
+      mgmt-ipv4: 172.100.100.203
+      ports:
+        - '22203:22'
+      exec:
+        - bash /usr/local/bin/hostnetconfig.sh -i 10.30.30.101/24 -g 10.30.30.1
+
+    HostD:
+      kind: linux
+      image: mitchv85/devhost
+      mgmt-ipv4: 172.100.100.204
+      ports:
+        - '22204:22'
+      exec:
+        - bash /usr/local/bin/hostnetconfig.sh -i 10.10.10.102/24 -g 10.10.10.1
+
+    HostE:
+      kind: linux
+      image: mitchv85/devhost
+      mgmt-ipv4: 172.100.100.205
+      ports:
+        - '22205:22'
+      exec:
+        - bash /usr/local/bin/hostnetconfig.sh -i 10.20.20.102/24 -g 10.20.20.1
+
+    HostF:
+      kind: linux
+      image: mitchv85/devhost
+      mgmt-ipv4: 172.100.100.206
+      ports:
+        - '22206:22'
+      exec:
+        - bash /usr/local/bin/hostnetconfig.sh -i 10.30.30.102/24 -g 10.30.30.1
+
+    HostG:
+      kind: linux
+      image: mitchv85/devhost
+      mgmt-ipv4: 172.100.100.207
+      ports:
+        - '22207:22'
+      exec:
+        - bash /usr/local/bin/hostnetconfig.sh -i 10.10.10.103/24 -g 10.10.10.1
+
+    HostH:
+      kind: linux
+      image: mitchv85/devhost
+      mgmt-ipv4: 172.100.100.208
+      ports:
+        - '22208:22'
+      exec:
+        - bash /usr/local/bin/hostnetconfig.sh -i 10.20.20.103/24 -g 10.20.20.1
+
+    HostI:
+      kind: linux
+      image: mitchv85/devhost
+      mgmt-ipv4: 172.100.100.209
+      ports:
+        - '22209:22'
+      exec:
+        - bash /usr/local/bin/hostnetconfig.sh -i 10.201.201.101/24 -g 10.201.201.1
+
+    HostJ:
+      kind: linux
+      image: mitchv85/devhost
+      mgmt-ipv4: 172.100.100.210
+      ports:
+        - '22210:22'
+      exec:
+        - bash /usr/local/bin/hostnetconfig.sh -i 10.202.202.101/24 -g 10.202.202.1
+
+  links:
+######################
+# SPINE to LEAF      #
+######################
+    - endpoints: ["SPINE1:et1", "LEAF1:et1"]
+    - endpoints: ["SPINE1:et2", "LEAF2:et1"]
+    - endpoints: ["SPINE1:et3", "LEAF3:et1"]
+    - endpoints: ["SPINE1:et4", "LEAF4:et1"]
+    - endpoints: ["SPINE1:et5", "PEG:et1"]
+########################
+# HOSTS                #
+########################
+    - endpoints: ["HostA:eth1", "LEAF1:et2"]
+    - endpoints: ["HostB:eth1", "LEAF1:et3"]
+    - endpoints: ["HostC:eth1", "LEAF2:et2"]
+    - endpoints: ["HostD:eth1", "LEAF2:et3"]
+    - endpoints: ["HostE:eth1", "LEAF3:et2"]
+    - endpoints: ["HostF:eth1", "LEAF3:et3"]
+    - endpoints: ["HostG:eth1", "LEAF4:et2"]
+    - endpoints: ["HostH:eth1", "LEAF4:et3"]
+    - endpoints: ["HostI:eth1", "SW1:et3"]
+    - endpoints: ["HostJ:eth1", "SW1:et4"]
+########################
+# External PIM Domain  #
+########################
+    - endpoints: ["PEG:et2", "SW1:et2"]
+    - endpoints: ["SW1:et1", "RP:et1"]

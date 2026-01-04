@@ -1,0 +1,532 @@
+---
+# --------------------------------------------------------------
+# Arista EVPN Multicast (Optimized Inter-Subnet Multicast) Demo
+# --------------------------------------------------------------
+
+name: arista-oism-demo
+
+prefix: ""
+
+mgmt:
+  network: mgmt
+  ipv4-subnet: 172.100.100.0/24
+
+topology:
+
+  defaults:
+    env:
+      INTFTYPE: et
+
+  kinds:
+    ceos:
+      image: ceos:latest
+      env:
+        CLAB_MGMT_VRF: MGMT
+    linux:
+      image: ghcr.io/aristanetworks/aclabs/host-ubuntu:rev1.0
+
+  nodes:
+
+# --------------------------------------------------------------
+# Domain A
+# --------------------------------------------------------------
+
+    A-SPINE:
+      kind: ceos
+      mgmt-ipv4: 172.100.100.10
+      binds:
+        - sn/a-spine.txt:/mnt/flash/ceos-config:ro
+      startup-config: configs/A-SPINE.cfg
+      ports:
+        - '22010:22'
+        - '8010:80'
+        - '44310:443'
+
+    A-LEAF-1:
+      kind: ceos
+      mgmt-ipv4: 172.100.100.11
+      binds:
+        - sn/a-leaf-1.txt:/mnt/flash/ceos-config:ro
+      startup-config: configs/A-LEAF-1.cfg
+      ports:
+        - '22011:22'
+        - '8011:80'
+        - '44311:443'
+
+    A-LEAF-2:
+      kind: ceos
+      mgmt-ipv4: 172.100.100.12
+      binds:
+        - sn/a-leaf-2.txt:/mnt/flash/ceos-config:ro
+      startup-config: configs/A-LEAF-2.cfg
+      ports:
+        - '22012:22'
+        - '8012:80'
+        - '44312:443'
+
+    A-LEAF-3:
+      kind: ceos
+      mgmt-ipv4: 172.100.100.13
+      binds:
+        - sn/a-leaf-3.txt:/mnt/flash/ceos-config:ro
+      startup-config: configs/A-LEAF-3.cfg
+      ports:
+        - '22013:22'
+        - '8013:80'
+        - '44313:443'
+
+    A-LEAF-4:
+      kind: ceos
+      mgmt-ipv4: 172.100.100.14
+      binds:
+        - sn/a-leaf-4.txt:/mnt/flash/ceos-config:ro
+      startup-config: configs/A-LEAF-4.cfg
+      ports:
+        - '22014:22'
+        - '8014:80'
+        - '44314:443'
+
+    A-LEAF-5:
+      kind: ceos
+      mgmt-ipv4: 172.100.100.15
+      binds:
+        - sn/a-leaf-5.txt:/mnt/flash/ceos-config:ro
+      startup-config: configs/A-LEAF-5.cfg
+      ports:
+        - '22015:22'
+        - '8015:80'
+        - '44315:443'
+
+    A-LEAF-7:
+      kind: ceos
+      mgmt-ipv4: 172.100.100.17
+      binds:
+        - sn/a-leaf-7.txt:/mnt/flash/ceos-config:ro
+      startup-config: configs/A-LEAF-7.cfg
+      ports:
+        - '22017:22'
+        - '8017:80'
+        - '44317:443'
+
+    A-LEAF-8:
+      kind: ceos
+      mgmt-ipv4: 172.100.100.18
+      binds:
+        - sn/a-leaf-8.txt:/mnt/flash/ceos-config:ro
+      startup-config: configs/A-LEAF-8.cfg
+      ports:
+        - '22018:22'
+        - '8018:80'
+        - '44318:443'
+
+    A-SW-1:
+      kind: ceos
+      mgmt-ipv4: 172.100.100.19
+      binds:
+        - sn/a-sw-1.txt:/mnt/flash/ceos-config:ro
+      startup-config: configs/A-SW-1.cfg
+      ports:
+        - '22019:22'
+        - '8019:80'
+        - '44319:443'
+
+    HostA1:
+      kind: linux
+      mgmt-ipv4: 172.100.100.211
+      env:
+        IPV4: 10.10.10.101/24
+        STATIC_ROUTE: 10.0.0.0/8
+        GW: 10.10.10.1
+        IPV6: 2001:db8:10:10::101/64
+      ports:
+        - '22211:22'
+      image: ghcr.io/aristanetworks/aclabs/host-ubuntu:rev1.0
+
+    HostA2:
+      kind: linux
+      mgmt-ipv4: 172.100.100.212
+      env:
+        IPV4: 10.20.20.101/24
+        STATIC_ROUTE: 10.0.0.0/8
+        GW: 10.20.20.1
+        IPV6: 2001:db8:20:20::101/64
+      ports:
+        - '22212:22'
+      image: ghcr.io/aristanetworks/aclabs/host-ubuntu:rev1.0
+
+    HostA3:
+      kind: linux
+      mgmt-ipv4: 172.100.100.213
+      env:
+        IPV4: 10.30.30.101/24
+        STATIC_ROUTE: 10.0.0.0/8
+        GW: 10.30.30.1
+        IPV6: 2001:db8:30:30::101/64
+      ports:
+        - '22213:22'
+      image: ghcr.io/aristanetworks/aclabs/host-ubuntu:rev1.0
+
+    HostA4:
+      kind: linux
+      mgmt-ipv4: 172.100.100.214
+      env:
+        IPV4: 10.10.10.102/24
+        STATIC_ROUTE: 10.0.0.0/8
+        GW: 10.10.10.1
+        IPV6: 2001:db8:10:10::102/64
+      ports:
+        - '22214:22'
+      image: ghcr.io/aristanetworks/aclabs/host-ubuntu:rev1.0
+
+    HostA5:
+      kind: linux
+      mgmt-ipv4: 172.100.100.215
+      env:
+        IPV4: 10.20.20.102/24
+        STATIC_ROUTE: 10.0.0.0/8
+        GW: 10.20.20.1
+        IPV6: 2001:db8:20:20::102/64
+      ports:
+        - '22215:22'
+      image: ghcr.io/aristanetworks/aclabs/host-ubuntu:rev1.0
+
+# --------------------------------------------------------------
+# Domain B
+# --------------------------------------------------------------
+
+    B-SPINE:
+      kind: ceos
+      mgmt-ipv4: 172.100.100.20
+      binds:
+        - sn/b-spine.txt:/mnt/flash/ceos-config:ro
+      startup-config: configs/B-SPINE.cfg
+      ports:
+        - '22020:22'
+        - '8020:80'
+        - '44320:443'
+
+    B-LEAF-1:
+      kind: ceos
+      mgmt-ipv4: 172.100.100.21
+      binds:
+        - sn/b-leaf-1.txt:/mnt/flash/ceos-config:ro
+      startup-config: configs/B-LEAF-1.cfg
+      ports:
+        - '22021:22'
+        - '8021:80'
+        - '44321:443'
+
+    B-LEAF-2:
+      kind: ceos
+      mgmt-ipv4: 172.100.100.22
+      binds:
+        - sn/b-leaf-2.txt:/mnt/flash/ceos-config:ro
+      startup-config: configs/B-LEAF-2.cfg
+      ports:
+        - '22022:22'
+        - '8022:80'
+        - '44322:443'
+
+    B-LEAF-3:
+      kind: ceos
+      mgmt-ipv4: 172.100.100.23
+      binds:
+        - sn/b-leaf-3.txt:/mnt/flash/ceos-config:ro
+      startup-config: configs/B-LEAF-3.cfg
+      ports:
+        - '22023:22'
+        - '8023:80'
+        - '44323:443'
+
+    B-LEAF-4:
+      kind: ceos
+      mgmt-ipv4: 172.100.100.24
+      binds:
+        - sn/b-leaf-4.txt:/mnt/flash/ceos-config:ro
+      startup-config: configs/B-LEAF-4.cfg
+      ports:
+        - '22024:22'
+        - '8024:80'
+        - '44324:443'
+
+    B-LEAF-7:
+      kind: ceos
+      mgmt-ipv4: 172.100.100.27
+      binds:
+        - sn/b-leaf-7.txt:/mnt/flash/ceos-config:ro
+      startup-config: configs/B-LEAF-7.cfg
+      ports:
+        - '22027:22'
+        - '8027:80'
+        - '44327:443'
+
+    B-LEAF-8:
+      kind: ceos
+      mgmt-ipv4: 172.100.100.28
+      binds:
+        - sn/b-leaf-8.txt:/mnt/flash/ceos-config:ro
+      startup-config: configs/B-LEAF-8.cfg
+      ports:
+        - '22028:22'
+        - '8028:80'
+        - '44328:443'
+
+    B-SW-1:
+      kind: ceos
+      mgmt-ipv4: 172.100.100.29
+      binds:
+        - sn/b-sw-1.txt:/mnt/flash/ceos-config:ro
+      startup-config: configs/B-SW-1.cfg
+      ports:
+        - '22029:22'
+        - '8029:80'
+        - '44329:443'
+
+    HostB1:
+      kind: linux
+      mgmt-ipv4: 172.100.100.221
+      env:
+        IPV4: 10.10.10.103/24
+        STATIC_ROUTE: 10.0.0.0/8
+        GW: 10.10.10.1
+        IPV6: 2001:db8:10:10::103/64
+      ports:
+        - '22221:22'
+      image: ghcr.io/aristanetworks/aclabs/host-ubuntu:rev1.0
+
+    HostB2:
+      kind: linux
+      mgmt-ipv4: 172.100.100.222
+      env:
+        IPV4: 10.40.40.101/24
+        STATIC_ROUTE: 10.0.0.0/8
+        GW: 10.40.40.1
+        IPV6: 2001:db8:40:40::101/64
+      ports:
+        - '22222:22'
+      image: ghcr.io/aristanetworks/aclabs/host-ubuntu:rev1.0
+
+    HostB3:
+      kind: linux
+      mgmt-ipv4: 172.100.100.223
+      env:
+        IPV4: 10.90.90.101/24
+        STATIC_ROUTE: 10.0.0.0/8
+        GW: 10.90.90.1
+        IPV6: 2001:db8:90:90::101/64
+      ports:
+        - '22223:22'
+      image: ghcr.io/aristanetworks/aclabs/host-ubuntu:rev1.0
+
+    HostB4:
+      kind: linux
+      mgmt-ipv4: 172.100.100.224
+      env:
+        IPV4: 10.90.90.102/24
+        STATIC_ROUTE: 10.0.0.0/8
+        GW: 10.90.90.1
+        IPV6: 2001:db8:90:90::102/64
+      ports:
+        - '22224:22'
+      image: ghcr.io/aristanetworks/aclabs/host-ubuntu:rev1.0
+
+    HostB5:
+      kind: linux
+      mgmt-ipv4: 172.100.100.225
+      env:
+        IPV4: 10.95.95.101/24
+        STATIC_ROUTE: 10.0.0.0/8
+        GW: 10.95.95.1
+        IPV6: 2001:db8:95:95::101/64
+      ports:
+        - '22225:22'
+      image: ghcr.io/aristanetworks/aclabs/host-ubuntu:rev1.0
+
+    HostB6:
+      kind: linux
+      mgmt-ipv4: 172.100.100.226
+      env:
+        IPV4: 10.40.40.102/24
+        STATIC_ROUTE: 10.0.0.0/8
+        GW: 10.40.40.1
+        IPV6: 2001:db8:40:40::102/64
+      ports:
+        - '22226:22'
+      image: ghcr.io/aristanetworks/aclabs/host-ubuntu:rev1.0
+
+    HostB7:
+      kind: linux
+      mgmt-ipv4: 172.100.100.227
+      env:
+        IPV4: 10.10.10.104/24
+        STATIC_ROUTE: 10.0.0.0/8
+        GW: 10.10.10.1
+        IPV6: 2001:db8:10:10::104/64
+      ports:
+        - '22227:22'
+      image: ghcr.io/aristanetworks/aclabs/host-ubuntu:rev1.0
+
+# --------------------------------------------------------------
+# External PIM Domain
+# --------------------------------------------------------------
+
+    PD1-R1:
+      kind: ceos
+      mgmt-ipv4: 172.100.100.51
+      binds:
+        - sn/pd1-r1.txt:/mnt/flash/ceos-config:ro
+      startup-config: configs/PD1-R1.cfg
+      ports:
+        - '22051:22'
+        - '8051:80'
+        - '44351:443'
+
+    PD1-R2:
+      kind: ceos
+      mgmt-ipv4: 172.100.100.52
+      binds:
+        - sn/pd1-r2.txt:/mnt/flash/ceos-config:ro
+      startup-config: configs/PD1-R2.cfg
+      ports:
+        - '22052:22'
+        - '8052:80'
+        - '44352:443'
+
+    PD1-R3:
+      kind: ceos
+      mgmt-ipv4: 172.100.100.53
+      binds:
+        - sn/pd1-r3.txt:/mnt/flash/ceos-config:ro
+      startup-config: configs/PD1-R3.cfg
+      ports:
+        - '22053:22'
+        - '8053:80'
+        - '44353:443'
+
+    PD1-R4:
+      kind: ceos
+      mgmt-ipv4: 172.100.100.54
+      binds:
+        - sn/pd1-r4.txt:/mnt/flash/ceos-config:ro
+      startup-config: configs/PD1-R4.cfg
+      ports:
+        - '22054:22'
+        - '8054:80'
+        - '44354:443'
+
+    PD1-H1:
+      kind: linux
+      mgmt-ipv4: 172.100.100.251
+      env:
+        IPV4: 10.201.10.101/24
+        STATIC_ROUTE: 10.0.0.0/8
+        GW: 10.201.10.1
+        IPV6: 2001:db8:201:10::101/64
+      ports:
+        - '22251:22'
+      image: ghcr.io/aristanetworks/aclabs/host-ubuntu:rev1.0
+
+    PD1-H2:
+      kind: linux
+      mgmt-ipv4: 172.100.100.252
+      env:
+        IPV4: 10.201.20.101/24
+        STATIC_ROUTE: 10.0.0.0/8
+        GW: 10.201.20.1
+        IPV6: 2001:db8:201:20::101/64
+      ports:
+        - '22252:22'
+      image: ghcr.io/aristanetworks/aclabs/host-ubuntu:rev1.0
+
+    PD1-H3:
+      kind: linux
+      mgmt-ipv4: 172.100.100.253
+      env:
+        IPV4: 10.201.30.101/24
+        STATIC_ROUTE: 10.0.0.0/8
+        GW: 10.201.30.1
+        IPV6: 2001:db8:201:30::101/64
+      ports:
+        - '22253:22'
+      image: ghcr.io/aristanetworks/aclabs/host-ubuntu:rev1.0
+
+# --------------------------------------------------------------
+# Externally Routed Network
+# --------------------------------------------------------------
+
+    EXT-SW-1:
+      kind: ceos
+      mgmt-ipv4: 172.100.100.41
+      binds:
+        - sn/ext-sw-1.txt:/mnt/flash/ceos-config:ro
+      startup-config: configs/EXT-SW-1.cfg
+      ports:
+        - '22041:22'
+        - '8041:80'
+        - '44341:443'
+
+# --------------------------------------------------------------
+# Core
+# --------------------------------------------------------------
+
+    CORE:
+      kind: ceos
+      mgmt-ipv4: 172.100.100.91
+      binds:
+        - sn/core.txt:/mnt/flash/ceos-config:ro
+      startup-config: configs/CORE.cfg
+      ports:
+        - '22091:22'
+        - '8091:80'
+        - '44391:443'
+
+  links:
+# --------------------------------------------------------------
+# Domain A
+# --------------------------------------------------------------
+    - endpoints: [ A-SPINE:et1, A-LEAF-1:et1 ]
+    - endpoints: [ A-SPINE:et2, A-LEAF-2:et1 ]
+    - endpoints: [ A-SPINE:et3, A-LEAF-3:et1 ]
+    - endpoints: [ A-SPINE:et4, A-LEAF-4:et1 ]
+    - endpoints: [ A-SPINE:et5, A-LEAF-5:et1 ]
+    - endpoints: [ A-SPINE:et7, A-LEAF-7:et1 ]
+    - endpoints: [ A-SPINE:et8, A-LEAF-8:et1 ]
+    - endpoints: [ A-LEAF-1:et5, A-SW-1:et1 ]
+    - endpoints: [ A-LEAF-2:et5, A-SW-1:et2 ]
+    - endpoints: [ A-SW-1:et3, HostA1:eth1 ]
+    - endpoints: [ A-SW-1:et4, HostA2:eth1 ]
+    - endpoints: [ A-SW-1:et5, HostA3:eth1 ]
+    - endpoints: [ A-LEAF-3:et5, PD1-R4:et1 ]
+    - endpoints: [ PD1-R4:et5, PD1-H3:eth1 ]
+    - endpoints: [ A-LEAF-4:et5, HostA4:eth1 ]
+    - endpoints: [ A-LEAF-5:et5, HostA5:eth1 ]
+    - endpoints: [ A-LEAF-7:et5, PD1-R1:et1 ]
+    - endpoints: [ A-LEAF-8:et5, PD1-R2:et1 ]
+    - endpoints: [ PD1-R1:et2, PD1-R2:et2 ]
+    - endpoints: [ PD1-R1:et3, PD1-R3:et1 ]
+    - endpoints: [ PD1-R2:et3, PD1-R3:et2 ]
+    - endpoints: [ PD1-R1:et5, PD1-H1:eth1 ]
+    - endpoints: [ PD1-R2:et5, PD1-H2:eth1 ]
+    - endpoints: [ A-LEAF-7:et2, CORE:et1 ]
+    - endpoints: [ A-LEAF-8:et2, CORE:et2 ]
+# --------------------------------------------------------------
+# Domain B
+# --------------------------------------------------------------
+    - endpoints: [ B-SPINE:et1, B-LEAF-1:et1 ]
+    - endpoints: [ B-SPINE:et2, B-LEAF-2:et1 ]
+    - endpoints: [ B-SPINE:et3, B-LEAF-3:et1 ]
+    - endpoints: [ B-SPINE:et4, B-LEAF-4:et1 ]
+    - endpoints: [ B-SPINE:et7, B-LEAF-7:et1 ]
+    - endpoints: [ B-SPINE:et8, B-LEAF-8:et1 ]
+    - endpoints: [ B-LEAF-1:et5, HostB1:eth1 ]
+    - endpoints: [ B-LEAF-2:et5, HostB2:eth1 ]
+    - endpoints: [ B-LEAF-3:et5, HostB3:eth1 ]
+    - endpoints: [ B-LEAF-4:et5, EXT-SW-1:et1 ]
+    - endpoints: [ EXT-SW-1:et2, HostB4:eth1 ]
+    - endpoints: [ EXT-SW-1:et3, HostB5:eth1 ]
+    - endpoints: [ B-LEAF-7:et5, B-SW-1:et1 ]
+    - endpoints: [ B-LEAF-8:et5, B-SW-1:et2 ]
+    - endpoints: [ B-SW-1:et3, HostB6:eth1 ]
+    - endpoints: [ B-SW-1:et4, HostB7:eth1 ]
+    - endpoints: [ B-LEAF-7:et2, CORE:et3 ]
+    - endpoints: [ B-LEAF-8:et2, CORE:et4 ]
